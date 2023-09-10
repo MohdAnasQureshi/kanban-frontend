@@ -23,6 +23,8 @@ const Signup = () => {
     const password = data.get("password").trim();
     const confirmPassword = data.get("confirmPassword").trim();
 
+    console.log(username, password, confirmPassword);
+
     let err = false;
 
     if (username === "") {
