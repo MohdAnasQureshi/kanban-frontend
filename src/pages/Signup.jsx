@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingButton from "@mui/lab/LoadingButton";
 import authApi from "../api/authApi";
+import axios from "axios";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -22,8 +23,6 @@ const Signup = () => {
     const username = data.get("username").trim();
     const password = data.get("password").trim();
     const confirmPassword = data.get("confirmPassword").trim();
-
-    console.log(username, password, confirmPassword);
 
     let err = false;
 
@@ -49,8 +48,11 @@ const Signup = () => {
     setLoading(true);
 
     try {
-      const res = await authApi
-        .signup(username, password, confirmPassword)
+      const res = await axios
+        .post(
+          "kanban-app-jk5k-git-master-mohdanasqureshi.vercel.app/api/v1/auth/signup",
+          { username, password, confirmPassword }
+        )
         .then((response) => {
           // Handle success
           console.log("Registration successful", response.data);
